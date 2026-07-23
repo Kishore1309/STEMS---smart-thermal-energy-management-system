@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,9 +13,9 @@
       theme: {
         extend: {
           colors: {
-            appBg: '#09090b',
-            surfaceBg: '#18181b',
-            surfaceBorder: '#27272a',
+            appBg: '#09090b',       
+            surfaceBg: '#18181b',   
+            surfaceBorder: '#27272a', 
             primaryText: '#e4e4e7',
             mutedText: '#a1a1aa',
             accentTeal: '#3b82f6',  // Blue 500
@@ -44,23 +43,11 @@
   <script src="/socket.io/socket.io.js"></script>
 
   <style>
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #27272a;
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3f3f46;
-    }
-
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+    
     .glass-effect {
       background: rgba(24, 24, 27, 0.6);
       backdrop-filter: blur(12px);
@@ -78,7 +65,6 @@
       flex-direction: column;
       justify-content: flex-end;
     }
-
     .battery-cap {
       position: absolute;
       top: -10px;
@@ -89,7 +75,6 @@
       background: #27272a;
       border-radius: 4px 4px 0 0;
     }
-
     .battery-fill {
       width: 100%;
       background: #22c55e;
@@ -101,7 +86,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .battery-text {
       position: absolute;
       top: 50%;
@@ -110,12 +94,11 @@
       font-weight: bold;
       color: white;
       font-size: 1.25rem;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
       z-index: 10;
     }
   </style>
 </head>
-
 <body class="bg-appBg text-primaryText h-screen flex overflow-hidden">
 
   <!-- ================= SIDEBAR ================= -->
@@ -132,52 +115,35 @@
 
     <!-- Navigation -->
     <nav class="flex-1 py-6 flex flex-col gap-2">
-      <a href="#" id="navDashboard"
-        class="flex items-center gap-3 pl-7 pr-4 py-3 bg-accentTeal/10 text-accentTeal border-l-4 border-accentTeal font-medium transition-all">
+      <a href="#" id="navDashboard" class="flex items-center gap-3 pl-7 pr-4 py-3 bg-accentTeal/10 text-accentTeal border-l-4 border-accentTeal font-medium transition-all">
         <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
       </a>
-      <a href="#" id="navAnalytics"
-        class="flex items-center gap-3 px-8 py-3 text-mutedText hover:text-primaryText hover:bg-white/5 font-medium transition-colors">
+      <a href="#" id="navAnalytics" class="flex items-center gap-3 px-8 py-3 text-mutedText hover:text-primaryText hover:bg-white/5 font-medium transition-colors">
         <i data-lucide="line-chart" class="w-5 h-5"></i> Analytics
       </a>
-      <a href="#" id="navSystem"
-        class="flex items-center gap-3 px-8 py-3 text-mutedText hover:text-primaryText hover:bg-white/5 font-medium transition-colors">
+      <a href="#" id="navSystem" class="flex items-center gap-3 px-8 py-3 text-mutedText hover:text-primaryText hover:bg-white/5 font-medium transition-colors">
         <i data-lucide="cpu" class="w-5 h-5"></i> System
       </a>
-      <a href="#"
-        class="flex items-center gap-3 px-8 py-3 text-mutedText hover:text-primaryText hover:bg-white/5 font-medium transition-colors hidden">
+      <a href="#" class="flex items-center gap-3 px-8 py-3 text-mutedText hover:text-primaryText hover:bg-white/5 font-medium transition-colors hidden">
         <i data-lucide="bell" class="w-5 h-5"></i> Alerts
       </a>
     </nav>
 
-    <!-- Bottom Actions -->
-    <div class="p-6 flex flex-col gap-4">
-      <button
-        class="w-full bg-accentTeal hover:bg-blue-400 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all">
-        System Check
-      </button>
-      <a href="#"
-        class="flex items-center gap-3 px-4 py-2 text-mutedText hover:text-primaryText transition-colors text-sm font-medium">
-        <i data-lucide="settings" class="w-5 h-5"></i> Settings
-      </a>
-    </div>
+
   </aside>
 
   <!-- ================= MAIN CONTENT ================= -->
   <div class="flex-1 flex flex-col relative overflow-hidden">
-
+    
     <!-- TOP HEADER -->
-    <header
-      class="h-20 flex items-center justify-between px-8 z-10 glass-effect border-b border-surfaceBorder shrink-0">
+    <header class="h-20 flex items-center justify-between px-8 z-10 glass-effect border-b border-surfaceBorder shrink-0">
       <div class="flex items-center relative w-80">
         <i data-lucide="search" class="w-4 h-4 text-mutedText absolute left-4"></i>
-        <input type="text" placeholder="Search system nodes..."
-          class="w-full bg-appBg border border-surfaceBorder rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-accentTeal text-primaryText placeholder:text-mutedText transition-colors">
+        <input type="text" placeholder="Search system nodes..." class="w-full bg-appBg border border-surfaceBorder rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-accentTeal text-primaryText placeholder:text-mutedText transition-colors">
       </div>
 
       <div class="flex items-center gap-6">
-        <div
-          class="flex gap-4 border-r border-surfaceBorder pr-6 text-sm font-semibold text-mutedText uppercase tracking-wider">
+        <div class="flex gap-4 border-r border-surfaceBorder pr-6 text-sm font-semibold text-mutedText uppercase tracking-wider">
           <button class="text-accentTeal font-bold flex flex-col items-center gap-1 group">
             Live View <div class="w-8 h-0.5 bg-accentTeal rounded group-hover:w-full transition-all"></div>
           </button>
@@ -185,18 +151,12 @@
         </div>
 
         <div class="relative group">
-          <button
-            class="text-xs font-bold text-primaryText uppercase tracking-widest hover:text-accentTeal transition-colors flex items-center gap-2 py-2">
+          <button class="text-xs font-bold text-primaryText uppercase tracking-widest hover:text-accentTeal transition-colors flex items-center gap-2 py-2">
             <i data-lucide="download" class="w-4 h-4"></i> Export Data
           </button>
-          <div
-            class="absolute right-0 mt-2 w-36 bg-surfaceBg border border-surfaceBorder rounded-md shadow-[0_4px_20px_rgba(0,0,0,0.5)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-20 flex flex-col">
-            <button id="exportCsvBtn"
-              class="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-white/5 text-primaryText transition-colors rounded-t-md border-b border-surfaceBorder flex items-center gap-3"><i
-                data-lucide="file-spreadsheet" class="w-4 h-4 text-accentTeal"></i> CSV Data</button>
-            <button id="exportPdfBtn"
-              class="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-white/5 text-primaryText transition-colors rounded-b-md flex items-center gap-3"><i
-                data-lucide="file-text" class="w-4 h-4 text-accentTeal"></i> PDF Report</button>
+          <div class="absolute right-0 mt-2 w-36 bg-surfaceBg border border-surfaceBorder rounded-md shadow-[0_4px_20px_rgba(0,0,0,0.5)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-20 flex flex-col">
+            <button id="exportCsvBtn" class="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-white/5 text-primaryText transition-colors rounded-t-md border-b border-surfaceBorder flex items-center gap-3"><i data-lucide="file-spreadsheet" class="w-4 h-4 text-accentTeal"></i> CSV Data</button>
+            <button id="exportPdfBtn" class="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-white/5 text-primaryText transition-colors rounded-b-md flex items-center gap-3"><i data-lucide="file-text" class="w-4 h-4 text-accentTeal"></i> PDF Report</button>
           </div>
         </div>
 
@@ -205,8 +165,7 @@
             <p class="text-xs font-bold text-primaryText">Admin Root</p>
             <p class="text-[10px] text-mutedText">System Administrator</p>
           </div>
-          <div
-            class="w-8 h-8 rounded-full bg-surfaceBorder flex items-center justify-center overflow-hidden border border-white/10">
+          <div class="w-8 h-8 rounded-full bg-surfaceBorder flex items-center justify-center overflow-hidden border border-white/10">
             <i data-lucide="user" class="w-4 h-4 text-primaryText"></i>
           </div>
         </div>
@@ -215,7 +174,7 @@
 
     <!-- SCROLLABLE CONTENT AREA -->
     <main class="flex-1 overflow-y-auto px-8 pb-8 pt-6">
-
+      
       <!-- ================= DASHBOARD VIEW ================= -->
       <div id="dashboardView" class="flex flex-col">
         <!-- System Overview Title -->
@@ -227,16 +186,14 @@
               <span id="sysStatusText">Core Node 01: All systems operational</span>
             </div>
           </div>
-          <button id="simBtn"
-            class="text-xs font-medium text-mutedText hover:text-white border border-surfaceBorder px-3 py-1.5 rounded-md bg-surfaceBg transition-colors">
+          <button id="simBtn" class="text-xs font-medium text-mutedText hover:text-white border border-surfaceBorder px-3 py-1.5 rounded-md bg-surfaceBg transition-colors">
             Simulate Test Data
           </button>
         </div>
 
         <!-- 5 TOP CARDS ROW -->
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
-          <div
-            class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
             <div class="flex justify-between items-start mb-2">
               <span class="text-xs font-medium text-mutedText uppercase">Temp 1</span>
               <i data-lucide="thermometer" class="w-4 h-4 text-mutedText/50"></i>
@@ -246,8 +203,7 @@
               <span class="text-sm text-mutedText">°C</span>
             </div>
           </div>
-          <div
-            class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
             <div class="flex justify-between items-start mb-2">
               <span class="text-xs font-medium text-mutedText uppercase">Temp 2</span>
               <i data-lucide="thermometer" class="w-4 h-4 text-mutedText/50"></i>
@@ -257,8 +213,7 @@
               <span class="text-sm text-mutedText">°C</span>
             </div>
           </div>
-          <div
-            class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
             <div class="flex justify-between items-start mb-2">
               <span class="text-xs font-medium text-mutedText uppercase">Temp 3</span>
               <i data-lucide="thermometer" class="w-4 h-4 text-mutedText/50"></i>
@@ -268,8 +223,7 @@
               <span class="text-sm text-mutedText">°C</span>
             </div>
           </div>
-          <div
-            class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
             <div class="flex justify-between items-start mb-2">
               <span class="text-xs font-medium text-mutedText uppercase">Current</span>
               <i data-lucide="activity" class="w-4 h-4 text-accentTeal/70"></i>
@@ -279,7 +233,738 @@
               <span class="text-sm text-mutedText">A</span>
             </div>
           </div>
-          <div
-            class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 hover:bg-[#27272a] transition-colors flex flex-col justify-between">
             <div class="flex justify-between items-start mb-2">
-              <span class="text-xs font-medium text-mutedText uppercase"
+              <span class="text-xs font-medium text-mutedText uppercase">Voltage</span>
+              <i data-lucide="zap" class="w-4 h-4 text-accentYellow/70"></i>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span id="voltage" class="text-2xl font-bold font-mono text-primaryText">--</span>
+              <span class="text-sm text-mutedText">V</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MIDDLE ROW: Chart & Battery -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
+          <!-- CHART PANEL -->
+          <div class="lg:col-span-3 glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 relative">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-sm font-semibold flex items-center gap-2 text-primaryText">
+                <i data-lucide="trending-up" class="w-4 h-4 text-mutedText"></i> Temperature & Voltage Trend
+              </h3>
+              <div class="text-[10px] uppercase tracking-wider text-mutedText flex gap-3">
+                <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-white"></div> Temp</span>
+                <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-accentTeal"></div> Voltage</span>
+              </div>
+            </div>
+            <div class="w-full h-64 relative"><canvas id="mainChart"></canvas></div>
+          </div>
+
+          <!-- BATTERY PANEL -->
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 flex flex-col justify-between items-center relative">
+            <div class="w-full flex justify-between items-center mb-6">
+               <span class="text-xs font-medium text-mutedText uppercase flex items-center gap-2">
+                 <i data-lucide="battery-charging" class="w-4 h-4"></i> Active Charge
+               </span>
+            </div>
+            <div class="battery-container">
+              <div class="battery-cap"></div>
+              <div class="battery-fill" id="batteryBar" style="height: 0%">
+                 <div class="battery-text font-mono" id="battery">--%</div>
+              </div>
+            </div>
+            <div class="w-full mt-6 flex flex-col items-center">
+              <div class="text-sm font-medium text-safeGreen flex items-center justify-center gap-2">
+                <span id="sohText">Excellent</span> <div id="sohDot" class="w-1.5 h-1.5 rounded-full bg-safeGreen"></div>
+              </div>
+              <h4 class="text-[10px] uppercase text-mutedText mt-1">State of Health</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTTOM ROW: AI Insights & Recent Events -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div class="lg:col-span-3 glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 flex gap-8 relative overflow-hidden">
+            <div class="flex-1 flex flex-col justify-center border-r border-surfaceBorder pr-8 z-10">
+              <h3 class="text-sm font-semibold mb-4 flex items-center gap-2 text-accentTeal"><i data-lucide="sparkles" class="w-4 h-4"></i> AI System Analysis</h3>
+              <div class="flex flex-col gap-6">
+                <div>
+                  <p id="aiText1" class="text-sm font-medium text-primaryText leading-relaxed">Awaiting sufficient telemetry points...</p>
+                  <p id="aiConf" class="text-xs text-mutedText mt-1">Confidence: --</p>
+                </div>
+                <div class="pl-3 border-l-2 border-surfaceBorder" id="aiBorder2">
+                  <p id="aiText2" class="text-sm font-medium text-mutedText leading-relaxed">No active recommendations.</p>
+                  <p id="aiPriority" class="text-xs text-mutedText mt-1">Priority: Low</p>
+                </div>
+              </div>
+            </div>
+            <div class="w-48 flex flex-col justify-center items-center py-2 shrink-0 z-10">
+              <div class="text-center mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-black/40 border border-white/5 mb-3">
+                   <i data-lucide="thermometer-sun" class="w-3 h-3 text-mutedText"></i><span class="text-xs text-mutedText uppercase">Predicted Temp</span>
+                </div>
+                <div class="text-4xl font-bold font-mono text-primaryText"><span id="predictedTemp">--</span><span class="text-xl text-mutedText">°C</span></div>
+              </div>
+              <div class="text-center w-full">
+                <h4 class="text-[10px] text-mutedText uppercase mb-2">System Status</h4>
+                <div id="statusBadge" class="bg-safeGreen/20 border border-safeGreen/30 text-safeGreen font-medium px-4 py-1.5 rounded-full inline-flex items-center gap-2 text-sm transition-colors">
+                  <i data-lucide="shield-check" class="w-4 h-4" id="statusIcon"></i><span id="statusBadgeText">System Safe</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6">
+            <h3 class="text-sm font-semibold flex items-center gap-2 text-primaryText mb-6"><i data-lucide="list" class="w-4 h-4 text-mutedText"></i> Recent Events</h3>
+            <div class="flex flex-col gap-4">
+               <div class="flex gap-3"><span class="text-xs font-mono text-mutedText mt-0.5">12:44</span><div><p class="text-sm font-medium text-primaryText">Charge Initiated</p><p class="text-[10px] text-mutedText">Source: Node_Alpha</p></div></div>
+               <div class="flex gap-3"><span class="text-xs font-mono text-mutedText mt-0.5">11:32</span><div><p class="text-sm font-medium text-primaryText opacity-80">Peak Voltage Alert</p><p class="text-[10px] text-mutedText">Resolved automatically</p></div></div>
+               <div class="flex gap-3"><span class="text-xs font-mono text-mutedText mt-0.5">10:15</span><div><p class="text-sm font-medium text-primaryText opacity-80">System Check</p><p class="text-[10px] text-mutedText">Passed: 104 nodes</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= ANALYTICS VIEW ================= -->
+      <div id="analyticsView" class="hidden flex-col">
+        <h2 class="text-2xl font-bold mb-6 text-primaryText">Analytics & Telemetry</h2>
+        
+        <!-- TOP ANALYTICS CARDS -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-xs font-medium text-mutedText uppercase mb-2">Avg Temp</span>
+            <span id="anaAvgTemp" class="text-2xl font-bold font-mono text-accentTeal">--</span>
+          </div>
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 flex flex-col justify-between relative">
+            <span class="text-xs font-medium text-mutedText uppercase mb-2">Rise Rate</span>
+            <span id="anaRiseRate" class="text-2xl font-bold font-mono text-accentYellow pb-2">--</span>
+            <div id="trendRiseRate" class="absolute bottom-3 right-4 text-xs font-bold text-mutedText">--</div>
+          </div>
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 flex flex-col justify-between relative">
+            <span class="text-xs font-medium text-mutedText uppercase mb-2">Current</span>
+            <span id="anaCurrent" class="text-2xl font-bold font-mono text-primaryText pb-2">--</span>
+            <div id="trendCurrent" class="absolute bottom-3 right-4 text-xs font-bold text-mutedText">--</div>
+          </div>
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 flex flex-col justify-between relative">
+            <span class="text-xs font-medium text-mutedText uppercase mb-2">Voltage</span>
+            <span id="anaVoltStab" class="text-2xl font-bold font-mono text-primaryText pb-2">--</span>
+            <div id="trendVoltage" class="absolute bottom-3 right-4 text-xs font-bold text-mutedText">--</div>
+          </div>
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-xs font-medium text-mutedText uppercase mb-2">Power</span>
+            <span id="anaPower" class="text-2xl font-bold font-mono text-primaryText">--</span>
+          </div>
+        </div>
+
+        <!-- CHARTS MIDDLE -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 relative">
+            <h3 class="text-sm font-semibold flex items-center gap-2 text-primaryText mb-4"><i data-lucide="bar-chart-3" class="w-4 h-4 text-mutedText"></i> System Operation Count</h3>
+            <div class="h-64 w-full"><canvas id="opBarChart"></canvas></div>
+          </div>
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 relative">
+            <h3 class="text-sm font-semibold flex items-center gap-2 text-primaryText mb-4"><i data-lucide="pie-chart" class="w-4 h-4 text-mutedText"></i> Temperature Zone Distribution</h3>
+            <div class="h-64 w-full flex justify-center"><canvas id="zonePieChart"></canvas></div>
+          </div>
+        </div>
+
+        <!-- LINE CHART BOTTOM -->
+        <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 relative">
+          <h3 class="text-sm font-semibold flex items-center gap-2 text-primaryText mb-4"><i data-lucide="activity" class="w-4 h-4 text-mutedText"></i> T1 vs T2 vs T3 Over Time</h3>
+          <div class="h-80 w-full"><canvas id="tempLineChart"></canvas></div>
+        </div>
+      </div>
+      
+      <!-- ================= SYSTEM VIEW ================= -->
+      <div id="systemView" class="hidden flex-col h-full">
+        <h2 class="text-2xl font-bold mb-6 text-primaryText">System Intelligence Layer</h2>
+        <div class="flex flex-col xl:flex-row gap-6 flex-1 min-h-0">
+          
+          <!-- LEFT SIDE (Main Intelligence) -->
+          <div class="flex flex-col gap-6 xl:w-2/3">
+            <!-- 1. Cooling Intelligence Card -->
+            <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 relative flex flex-col justify-between shadow-lg">
+               <h3 class="text-lg font-bold flex items-center gap-2 text-primaryText mb-6">
+                  <i data-lucide="fan" class="w-5 h-5 text-accentTeal"></i> Cooling Intelligence
+               </h3>
+               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                     <p class="text-xs text-mutedText uppercase mb-1 font-semibold">Cooling Mode</p>
+                     <p id="sysCommand" class="text-2xl font-mono font-bold text-primaryText">OFF</p>
+                     <p class="text-xs text-mutedText uppercase mb-1 mt-6 font-semibold">Cooling Level</p>
+                     <p id="sysLevel" class="text-xl font-bold text-accentTeal tracking-wide">LOW</p>
+                  </div>
+                  <div class="md:border-l md:border-surfaceBorder md:pl-6 flex flex-col justify-between">
+                     <div>
+                       <p class="text-xs text-mutedText uppercase mb-2 font-semibold">Decision Reason</p>
+                       <p id="sysReason" class="text-sm font-medium text-accentYellow leading-relaxed w-full">Awaiting evaluation...</p>
+                     </div>
+                     <div class="flex items-center gap-6 mt-6 bg-black/20 p-3 rounded-lg border border-white/5">
+                       <div class="flex items-center gap-3">
+                         <div id="sysFanIndicator" class="w-2.5 h-2.5 rounded-full bg-surfaceBorder"></div>
+                         <span class="text-[10px] font-bold text-mutedText uppercase tracking-widest">FAN</span>
+                       </div>
+                       <div class="flex items-center gap-3">
+                         <div id="sysPeltierIndicator" class="w-2.5 h-2.5 rounded-full bg-surfaceBorder"></div>
+                         <span class="text-[10px] font-bold text-mutedText uppercase tracking-widest">PELTIER</span>
+                       </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Bottom Row: Core Sensors + Prediction Engine -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1">
+              <!-- 2. Core Sensors -->
+              <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 shadow-md">
+                 <h3 class="text-sm font-bold flex items-center gap-2 text-primaryText mb-5 tracking-wide"><i data-lucide="cpu" class="w-4 h-4 text-mutedText"></i> CORE SENSORS</h3>
+                 <div class="flex flex-col gap-3">
+                   <div class="flex justify-between items-center px-4 py-3 bg-white/5 rounded-lg border border-white/5 shadow-sm">
+                     <span class="text-sm font-medium text-mutedText">Battery 1</span>
+                     <span id="sysT1" class="text-lg font-mono font-bold text-primaryText">-- °C</span>
+                   </div>
+                   <div class="flex justify-between items-center px-4 py-3 bg-white/5 rounded-lg border border-white/5 shadow-sm">
+                     <span class="text-sm font-medium text-mutedText">Battery 2</span>
+                     <span id="sysT2" class="text-lg font-mono font-bold text-primaryText">-- °C</span>
+                   </div>
+                   <div class="flex justify-between items-center px-4 py-3 bg-white/5 rounded-lg border border-white/5 shadow-sm">
+                     <span class="text-sm font-medium text-mutedText">Battery 3</span>
+                     <span id="sysT3" class="text-lg font-mono font-bold text-primaryText">-- °C</span>
+                   </div>
+                 </div>
+              </div>
+
+              <!-- 3. Prediction Engine -->
+              <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl p-6 flex flex-col shadow-md">
+                 <h3 class="text-sm font-bold flex items-center gap-2 text-primaryText mb-5 tracking-wide"><i data-lucide="brain-circuit" class="w-4 h-4 text-accentTeal"></i> PREDICTION ENGINE</h3>
+                 <div class="flex-1 flex flex-col justify-center gap-4">
+                   <div class="bg-black/30 p-4 rounded-xl border border-white/5 shadow-inner">
+                     <p class="text-[10px] text-mutedText uppercase tracking-widest flex items-center justify-between mb-1">Predicted Temp <i data-lucide="trending-up" class="w-3 h-3 text-mutedText"></i></p>
+                     <p id="sysPredTemp" class="text-2xl font-bold font-mono text-primaryText">-- °C</p>
+                   </div>
+                   
+                   <div class="grid grid-cols-2 gap-4">
+                     <div class="bg-black/30 p-4 rounded-xl border border-white/5 shadow-inner">
+                       <p class="text-[10px] text-mutedText uppercase tracking-widest mb-1">Time To Overheat</p>
+                       <p id="sysTimeToOverheat" class="text-lg font-bold font-mono text-primaryText">--</p>
+                     </div>
+                     <div class="bg-black/30 p-4 rounded-xl border border-white/5 shadow-inner flex flex-col justify-center">
+                       <p class="text-[10px] text-mutedText uppercase tracking-widest mb-2">Trend Status</p>
+                       <div id="sysTrendWrap" class="inline-flex items-center gap-2 text-mutedText">
+                         <i id="sysTrendIcon" data-lucide="minus" class="w-4 h-4"></i>
+                         <span id="sysTrendText" class="text-xs font-bold">Stable</span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE: Inference Log -->
+          <div class="glass-effect bg-surfaceBg border border-surfaceBorder rounded-2xl flex flex-col xl:w-1/3 min-h-[400px] shadow-lg">
+            <div class="px-6 py-5 border-b border-surfaceBorder flex justify-between items-center shrink-0">
+              <h3 class="text-sm font-bold flex items-center gap-2 text-primaryText tracking-wide"><i data-lucide="scroll-text" class="w-4 h-4 text-mutedText"></i> LIVE INFERENCE LOG</h3>
+              <div class="w-2 h-2 rounded-full bg-safeGreen animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+            </div>
+            <div id="sysLogContainer" class="flex-1 overflow-y-auto p-4 flex flex-col gap-2 font-mono text-xs scroll-smooth">
+              <!-- Logs appended dynamically here -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ================= HISTORY MODAL ================= -->
+  <div id="historyModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-8">
+    <div class="bg-surfaceBg border border-surfaceBorder rounded-2xl w-full max-w-6xl h-[80vh] flex flex-col shadow-[0_0_40px_rgba(0,0,0,0.8)] relative">
+      <div class="px-6 py-4 border-b border-surfaceBorder flex justify-between items-center bg-appBg/50 rounded-t-2xl">
+        <h2 class="text-lg font-bold text-primaryText flex items-center gap-2"><i data-lucide="history" class="w-5 h-5 text-accentTeal"></i> System Data History</h2>
+        <button id="closeHistoryBtn" class="text-mutedText hover:text-criticalRed transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
+      </div>
+      <div class="flex-1 overflow-auto p-6">
+        <table class="w-full text-left text-sm whitespace-nowrap">
+          <thead class="text-xs text-mutedText uppercase bg-appBg sticky top-0 z-10 shadow-sm border-b border-surfaceBorder">
+            <tr>
+              <th class="px-4 py-3 font-semibold">Timestamp</th>
+              <th class="px-4 py-3 font-semibold">T1 (°C)</th>
+              <th class="px-4 py-3 font-semibold">T2 (°C)</th>
+              <th class="px-4 py-3 font-semibold">T3 (°C)</th>
+              <th class="px-4 py-3 font-semibold text-accentTeal">Avg (°C)</th>
+              <th class="px-4 py-3 font-semibold">Current (A)</th>
+              <th class="px-4 py-3 font-semibold">Voltage (V)</th>
+              <th class="px-4 py-3 font-semibold">Battery %</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody" class="divide-y divide-surfaceBorder">
+            <tr><td colspan="8" class="text-center py-8 text-mutedText">Loading history...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // DOM Elements
+    const elements = {
+      t1: document.getElementById('t1'), t2: document.getElementById('t2'), t3: document.getElementById('t3'),
+      current: document.getElementById('current'), voltage: document.getElementById('voltage'),
+      battery: document.getElementById('battery'), batteryBar: document.getElementById('batteryBar'),
+      predictedTemp: document.getElementById('predictedTemp'), statusBadge: document.getElementById('statusBadge'),
+      statusBadgeText: document.getElementById('statusBadgeText'), statusIcon: document.getElementById('statusIcon'),
+      aiText1: document.getElementById('aiText1'), aiText2: document.getElementById('aiText2'),
+      aiConf: document.getElementById('aiConf'), aiPriority: document.getElementById('aiPriority'),
+      aiBorder2: document.getElementById('aiBorder2'), sysStatusText: document.getElementById('sysStatusText'),
+      sysDot: document.getElementById('sysDot'), sohText: document.getElementById('sohText'),
+      sohDot: document.getElementById('sohDot'),
+      
+      anaAvgTemp: document.getElementById('anaAvgTemp'), anaRiseRate: document.getElementById('anaRiseRate'),
+      anaCurrent: document.getElementById('anaCurrent'), anaVoltStab: document.getElementById('anaVoltStab'),
+      anaPower: document.getElementById('anaPower'),
+      trendRiseRate: document.getElementById('trendRiseRate'), trendCurrent: document.getElementById('trendCurrent'),
+      trendVoltage: document.getElementById('trendVoltage')
+    };
+
+    // System Elements
+    const sysElements = {
+      command: document.getElementById('sysCommand'), level: document.getElementById('sysLevel'),
+      reason: document.getElementById('sysReason'), fan: document.getElementById('sysFanIndicator'),
+      peltier: document.getElementById('sysPeltierIndicator'), t1: document.getElementById('sysT1'),
+      t2: document.getElementById('sysT2'), t3: document.getElementById('sysT3'),
+      predTemp: document.getElementById('sysPredTemp'), timeHeat: document.getElementById('sysTimeToOverheat'),
+      trendWrap: document.getElementById('sysTrendWrap'), trendIcon: document.getElementById('sysTrendIcon'),
+      trendText: document.getElementById('sysTrendText'), logContainer: document.getElementById('sysLogContainer')
+    };
+
+    // ================= VIEW TOGGLING =================
+    const navDashboard = document.getElementById('navDashboard');
+    const navAnalytics = document.getElementById('navAnalytics');
+    const navSystem = document.getElementById('navSystem');
+    
+    const dashboardView = document.getElementById('dashboardView');
+    const analyticsView = document.getElementById('analyticsView');
+    const systemView = document.getElementById('systemView');
+
+    const activeNavClass = "flex items-center gap-3 pl-7 pr-4 py-3 bg-accentTeal/10 text-accentTeal border-l-4 border-accentTeal font-medium transition-all";
+    const inactiveNavClass = "flex items-center gap-3 px-8 py-3 text-mutedText hover:text-primaryText hover:bg-white/5 font-medium transition-colors";
+
+    function setTab(activeTab) {
+      dashboardView.classList.add('hidden'); dashboardView.classList.remove('flex');
+      analyticsView.classList.add('hidden'); analyticsView.classList.remove('flex');
+      systemView.classList.add('hidden'); systemView.classList.remove('flex');
+      
+      navDashboard.className = inactiveNavClass; navAnalytics.className = inactiveNavClass; navSystem.className = inactiveNavClass;
+      
+      if(activeTab === 'dashboard') { dashboardView.classList.remove('hidden'); dashboardView.classList.add('flex'); navDashboard.className = activeNavClass; }
+      else if(activeTab === 'analytics') { 
+        analyticsView.classList.remove('hidden'); analyticsView.classList.add('flex'); navAnalytics.className = activeNavClass;
+        setTimeout(() => { opChart.resize(); pieChart.resize(); tLineChart.resize(); }, 50);
+      }
+      else if(activeTab === 'system') { systemView.classList.remove('hidden'); systemView.classList.add('flex'); navSystem.className = activeNavClass; }
+    }
+
+    navDashboard.addEventListener('click', () => setTab('dashboard'));
+    navAnalytics.addEventListener('click', () => setTab('analytics'));
+    navSystem.addEventListener('click', () => setTab('system'));
+
+
+    // ================= DASHBOARD CHART CONFIGURATION =================
+    Chart.defaults.color = '#a1a1aa';
+    Chart.defaults.borderColor = 'rgba(255,255,255,0.05)';
+    Chart.defaults.font.family = 'Inter, sans-serif'; // Or whatever default is computed
+
+    const ctxMain = document.getElementById('mainChart').getContext('2d');
+    const mainChart = new Chart(ctxMain, {
+      type: 'line',
+      data: {
+        labels: [], 
+        datasets: [
+          { label: 'Actual (T1)', data: [], borderColor: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderWidth: 2, tension: 0.4, fill: true, pointRadius: 0 },
+          { label: 'Voltage', data: [], borderColor: '#3b82f6', borderDash: [5, 5], borderWidth: 2, tension: 0.4, fill: false, pointRadius: 0 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, animation: { duration: 0 }, interaction: { mode: 'index', intersect: false }, plugins: { legend: { display: false } },
+                 scales: { x: { display: false }, y: { border: { display: false } } } }
+    });
+
+    // ================= ANALYTICS CHARTS CONFIGURATION =================
+    const ctxOp = document.getElementById('opBarChart').getContext('2d');
+    const opChart = new Chart(ctxOp, {
+      type: 'bar',
+      data: {
+        labels: ["OFF", "FAN LOW", "FAN HIGH", "PELTIER"],
+        datasets: [{ label: 'Operations', data: [0, 0, 0, 0], backgroundColor: ['rgba(161, 161, 170, 0.8)', 'rgba(234, 179, 8, 0.8)', 'rgba(59, 130, 246, 0.8)', 'rgba(239, 68, 68, 0.8)'], borderRadius: 4 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } }
+    });
+
+    const ctxPie = document.getElementById('zonePieChart').getContext('2d');
+    const pieChart = new Chart(ctxPie, {
+      type: 'doughnut',
+      data: { labels: ['SAFE (<35°C)', 'WARM (35-45°C)', 'HOT (>45°C)'], datasets: [{ data: [1, 0, 0], backgroundColor: ['#22c55e', '#eab308', '#ef4444'], borderWidth: 0, hoverOffset: 4 }] },
+      options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'right' } } }
+    });
+
+    const ctxLine = document.getElementById('tempLineChart').getContext('2d');
+    const tLineChart = new Chart(ctxLine, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          { label: 'T1', data: [], borderColor: '#3b82f6', borderWidth: 2, tension: 0.4, pointRadius: 0 },
+          { label: 'T2', data: [], borderColor: '#22c55e', borderWidth: 2, tension: 0.4, pointRadius: 0 },
+          { label: 'T3', data: [], borderColor: '#eab308', borderWidth: 2, tension: 0.4, pointRadius: 0 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, plugins: { legend: { position: 'top' } }, scales: { x: { grid: { display: false } } } }
+    });
+
+    // ================= REAL-TIME DATA LOGIC =================
+    const socket = io();
+    const MAX_POINTS = 30;
+    
+    // Analytics State
+    let analyticsData = [];
+    let prevMaxTemp = null;
+    let prevVoltage = null;
+    let prevCurrent = null;
+
+    // System Engine State
+    let sysTempHistory = [];
+
+    fetch('/api/history').then(r=>r.json()).then(hist => {
+      if(hist && hist.length) {
+        analyticsData = hist;
+        computeAnalytics(hist[hist.length-1], true);
+      }
+    });
+
+    socket.on('data', (data) => {
+      // Basic Dashboard Updates
+      elements.t1.innerText = data.t1.toFixed(1); elements.t2.innerText = data.t2.toFixed(1); elements.t3.innerText = data.t3.toFixed(1);
+      elements.current.innerText = data.current.toFixed(1); elements.voltage.innerText = data.voltage.toFixed(1);
+      
+      const batVal = Math.min(Math.max(Math.round(data.battery), 0), 100);
+      elements.battery.innerText = batVal + '%'; elements.batteryBar.style.height = batVal + '%';
+      
+      if (batVal < 20) {
+        elements.batteryBar.style.background = '#ef4444'; elements.sohText.innerText = 'Critical';
+        elements.sohText.className = 'text-criticalRed font-medium flex items-center justify-center gap-2';
+        elements.sohDot.className = 'w-1.5 h-1.5 rounded-full bg-criticalRed';
+      } else if (batVal < 50) {
+        elements.batteryBar.style.background = '#eab308'; elements.sohText.innerText = 'Good';
+        elements.sohText.className = 'text-accentYellow font-medium flex items-center justify-center gap-2';
+        elements.sohDot.className = 'w-1.5 h-1.5 rounded-full bg-accentYellow';
+      } else {
+        elements.batteryBar.style.background = '#22c55e'; elements.sohText.innerText = 'Excellent';
+        elements.sohText.className = 'text-safeGreen font-medium flex items-center justify-center gap-2';
+        elements.sohDot.className = 'w-1.5 h-1.5 rounded-full bg-safeGreen';
+      }
+
+      elements.predictedTemp.innerText = data.predicted.toFixed(1);
+
+      let risk = 'SAFE'; if (data.predicted > 45) risk = 'CRITICAL'; else if (data.predicted > 35) risk = 'WARNING';
+      applyStyles(risk, data); updateDashboardChart(data);
+      
+      data.timestamp = data.timestamp || new Date().toISOString();
+      analyticsData.push(data); if(analyticsData.length > 200) analyticsData.shift();
+      
+      computeAnalytics(data, false);
+      computeSystemIntelligence(data);
+    });
+
+    function computeAnalytics(latestData, isInitialLoad) {
+      if(!latestData) return;
+      const t1 = latestData.t1, t2 = latestData.t2, t3 = latestData.t3;
+      const maxT = Math.max(t1, t2, t3); const avgT = (t1 + t2 + t3) / 3;
+
+      let rRate = 0; if (prevMaxTemp !== null) rRate = maxT - prevMaxTemp;
+      let cDiff = (prevCurrent !== null) ? latestData.current - prevCurrent : 0;
+      let vDiff = (prevVoltage !== null) ? latestData.voltage - prevVoltage : 0;
+
+      const power = latestData.voltage * latestData.current;
+
+      elements.anaAvgTemp.innerText = avgT.toFixed(1) + " °C";
+      elements.anaRiseRate.innerText = (rRate > 0 ? "+" : "") + rRate.toFixed(2) + " °C/s";
+      elements.anaCurrent.innerText = latestData.current.toFixed(1) + " A";
+      elements.anaVoltStab.innerText = latestData.voltage.toFixed(1) + " V";
+      elements.anaPower.innerText = power.toFixed(1) + " W";
+
+      if (prevMaxTemp === null || prevCurrent === null || prevVoltage === null || isInitialLoad) {
+         elements.trendRiseRate.innerHTML = `--`; elements.trendCurrent.innerHTML = `--`; elements.trendVoltage.innerHTML = `--`;
+      } else {
+         if (rRate > 0.01) { elements.trendRiseRate.innerHTML = '<i data-lucide="arrow-up" class="w-3 h-3"></i>'; elements.trendRiseRate.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-safeGreen"; }
+         else if (rRate < -0.01) { elements.trendRiseRate.innerHTML = '<i data-lucide="arrow-down" class="w-3 h-3"></i>'; elements.trendRiseRate.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-criticalRed"; }
+         else { elements.trendRiseRate.innerHTML = '<i data-lucide="minus" class="w-3 h-3"></i>'; elements.trendRiseRate.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-mutedText"; }
+
+         if (cDiff > 0.01) { elements.trendCurrent.innerHTML = `<i data-lucide="arrow-up" class="w-3 h-3"></i> +${cDiff.toFixed(2)} A`; elements.trendCurrent.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-safeGreen"; }
+         else if (cDiff < -0.01) { elements.trendCurrent.innerHTML = `<i data-lucide="arrow-down" class="w-3 h-3"></i> ${cDiff.toFixed(2)} A`; elements.trendCurrent.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-criticalRed"; }
+         else { elements.trendCurrent.innerHTML = `~ 0.00 A`; elements.trendCurrent.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-mutedText"; }
+
+         if (vDiff > 0.01) { elements.trendVoltage.innerHTML = `<i data-lucide="arrow-up" class="w-3 h-3"></i> +${vDiff.toFixed(2)} V`; elements.trendVoltage.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-safeGreen"; }
+         else if (vDiff < -0.01) { elements.trendVoltage.innerHTML = `<i data-lucide="arrow-down" class="w-3 h-3"></i> ${vDiff.toFixed(2)} V`; elements.trendVoltage.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-criticalRed"; }
+         else { elements.trendVoltage.innerHTML = `~ 0.00 V`; elements.trendVoltage.className = "absolute bottom-3 right-3 text-xs font-bold flex items-center gap-1 text-mutedText"; }
+         lucide.createIcons();
+      }
+
+      prevMaxTemp = maxT; prevVoltage = latestData.voltage; prevCurrent = latestData.current;
+
+      let off=0, fanLo=0, fanHi=0, pelt=0; let safe=0, warm=0, hot=0;
+      analyticsData.forEach(d => {
+        if(d.command === 'OFF') off++; else if(d.command === 'FAN_LOW') fanLo++; else if(d.command === 'FAN_HIGH') fanHi++; else if(d.command === 'PELTIER') pelt++;
+        let mx = Math.max(d.t1, d.t2, d.t3);
+        if(mx < 35) safe++; else if(mx <= 45) warm++; else hot++;
+      });
+      opChart.data.datasets[0].data = [off, fanLo, fanHi, pelt]; opChart.update();
+      pieChart.data.datasets[0].data = [safe, warm, hot]; pieChart.update();
+
+      if (isInitialLoad) {
+         tLineChart.data.labels = []; tLineChart.data.datasets[0].data = []; tLineChart.data.datasets[1].data = []; tLineChart.data.datasets[2].data = [];
+         analyticsData.slice(-50).forEach(d => {
+            tLineChart.data.labels.push(new Date(d.timestamp).toLocaleTimeString([], {hour12:false}));
+            tLineChart.data.datasets[0].data.push(d.t1); tLineChart.data.datasets[1].data.push(d.t2); tLineChart.data.datasets[2].data.push(d.t3);
+         });
+      } else {
+         tLineChart.data.labels.push(new Date(latestData.timestamp).toLocaleTimeString([], {hour12:false}));
+         tLineChart.data.datasets[0].data.push(t1); tLineChart.data.datasets[1].data.push(t2); tLineChart.data.datasets[2].data.push(t3);
+         if (tLineChart.data.labels.length > 50) {
+            tLineChart.data.labels.shift(); tLineChart.data.datasets[0].data.shift(); tLineChart.data.datasets[1].data.shift(); tLineChart.data.datasets[2].data.shift();
+         }
+      }
+      tLineChart.update();
+    }
+
+    function computeSystemIntelligence(data) {
+       let currentTemp = Math.max(data.t1, data.t2, data.t3);
+       sysTempHistory.push(currentTemp);
+
+       if (sysTempHistory.length > 10) sysTempHistory.shift();
+
+       let tempRate = 0;
+       let trend = "Stable";
+
+       if (sysTempHistory.length >= 4) {
+         let Tn = sysTempHistory[sysTempHistory.length - 1];
+         let Tn_3 = sysTempHistory[sysTempHistory.length - 4];
+
+         tempRate = (Tn - Tn_3) / 3;
+
+         if (tempRate > 2) { trend = "Rapid Increase (Critical)"; }
+         else if (tempRate > 0.5) { trend = "Increasing"; }
+         else if (tempRate < -0.5) { trend = "Decreasing"; }
+         else { trend = "Stable"; }
+       }
+
+       let thresholdTemp = 50; 
+       let timeToOverheat = 0;
+
+       if (currentTemp >= thresholdTemp) { timeToOverheat = 0; }
+       else if (tempRate <= 0.1) { timeToOverheat = Infinity; }
+       else { timeToOverheat = (thresholdTemp - currentTemp) / tempRate; }
+
+       let reason = "";
+       let cmd = data.command;
+       
+       if (cmd === "PELTIER") { reason = "Critical overheating risk: activating Peltier + fan for maximum cooling (" + (timeToOverheat===Infinity? "N/A" : timeToOverheat.toFixed(1) + "s") + ")"; }
+       else if (cmd === "FAN_HIGH") { reason = `High temperature or rapid rise detected (+${tempRate.toFixed(2)}°C/sec): increasing airflow`; }
+       else if (cmd === "FAN_LOW") { reason = "Moderate temperature increase: maintaining airflow for stabilization"; }
+       else if (cmd === "OFF") { reason = "Temperature stable within safe limits: cooling not required"; }
+
+       // Update UI
+       sysElements.command.innerText = cmd;
+       sysElements.reason.innerText = reason;
+
+       let fanActive = (cmd !== "OFF");
+       let peltierActive = (cmd === "PELTIER");
+       
+       let level = "OFF";
+       if(cmd === "FAN_LOW") level = "LOW";
+       if(cmd === "FAN_HIGH") level = "HIGH";
+       if(cmd === "PELTIER") level = "MAXIMUM";
+       sysElements.level.innerText = level;
+       
+       if(level === "MAXIMUM") sysElements.level.className = "text-xl font-bold text-criticalRed tracking-wide";
+       else if(level === "HIGH") sysElements.level.className = "text-xl font-bold text-accentYellow tracking-wide";
+       else if(level === "LOW") sysElements.level.className = "text-xl font-bold text-accentTeal tracking-wide";
+       else sysElements.level.className = "text-xl font-bold text-primaryText tracking-wide";
+
+       sysElements.fan.className = fanActive ? "w-2.5 h-2.5 rounded-full bg-safeGreen shadow-[0_0_8px_#22c55e]" : "w-2.5 h-2.5 rounded-full bg-surfaceBorder";
+       sysElements.peltier.className = peltierActive ? "w-2.5 h-2.5 rounded-full bg-accentTeal shadow-[0_0_8px_#3b82f6]" : "w-2.5 h-2.5 rounded-full bg-surfaceBorder";
+
+       sysElements.t1.innerText = data.t1.toFixed(1) + " °C";
+       sysElements.t2.innerText = data.t2.toFixed(1) + " °C";
+       sysElements.t3.innerText = data.t3.toFixed(1) + " °C";
+       
+       sysElements.t1.className = `text-lg font-mono font-bold ${data.t1 > 45 ? 'text-criticalRed' : data.t1 > 35 ? 'text-accentYellow' : 'text-primaryText'}`;
+       sysElements.t2.className = `text-lg font-mono font-bold ${data.t2 > 45 ? 'text-criticalRed' : data.t2 > 35 ? 'text-accentYellow' : 'text-primaryText'}`;
+       sysElements.t3.className = `text-lg font-mono font-bold ${data.t3 > 45 ? 'text-criticalRed' : data.t3 > 35 ? 'text-accentYellow' : 'text-primaryText'}`;
+
+       sysElements.predTemp.innerText = data.predicted.toFixed(1) + " °C";
+       if (timeToOverheat === Infinity) {
+          sysElements.timeHeat.innerText = "No risk"; sysElements.timeHeat.className = "text-lg font-bold font-mono text-safeGreen";
+       } else {
+          sysElements.timeHeat.innerText = timeToOverheat.toFixed(1) + " s"; sysElements.timeHeat.className = "text-lg font-bold font-mono text-criticalRed";
+       }
+
+       let trColor = "text-safeGreen"; let trIcon = "move-right";
+       if (trend === "Rapid Increase (Critical)") { trColor = "text-criticalRed"; trIcon = "trending-up"; }
+       else if (trend === "Increasing") { trColor = "text-accentYellow"; trIcon = "arrow-up-right"; }
+       else if (trend === "Decreasing") { trColor = "text-accentTeal"; trIcon = "trending-down"; }
+       
+       sysElements.trendWrap.className = `inline-flex px-3 py-1.5 rounded bg-black/40 items-center gap-2 border border-white/5 ${trColor}`;
+       sysElements.trendText.innerText = trend;
+       setLucideIcon('sysTrendIcon', trIcon);
+
+       const logTime = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+       let logHtml = `<div class="p-3 rounded-lg bg-black/20 border border-white/5"><span class="text-mutedText mr-2">[${logTime}]</span>`;
+       if (trend === "Rapid Increase (Critical)") logHtml += `<span class="text-criticalRed font-semibold">Critical rise</span> <i data-lucide="arrow-right" class="inline w-3 h-3 text-mutedText mx-1"></i> <span class="bg-criticalRed/20 text-criticalRed px-2 py-0.5 rounded">${cmd}</span>`;
+       else if (trend === "Increasing") logHtml += `<span class="text-accentYellow font-semibold">Temp rising</span> <i data-lucide="arrow-right" class="inline w-3 h-3 text-mutedText mx-1"></i> <span class="bg-accentYellow/20 text-accentYellow px-2 py-0.5 rounded">${cmd}</span>`;
+       else if (trend === "Decreasing") logHtml += `<span class="text-accentTeal font-semibold">Cooling down</span> <i data-lucide="arrow-right" class="inline w-3 h-3 text-mutedText mx-1"></i> <span class="bg-accentTeal/20 text-accentTeal px-2 py-0.5 rounded">${cmd}</span>`;
+       else logHtml += `<span class="text-safeGreen font-semibold">System stable</span> <i data-lucide="arrow-right" class="inline w-3 h-3 text-mutedText mx-1"></i> <span class="bg-surfaceBorder text-primaryText px-2 py-0.5 rounded">${cmd}</span>`;
+       logHtml += `</div>`;
+
+       sysElements.logContainer.insertAdjacentHTML('beforeend', logHtml);
+       if (sysElements.logContainer.children.length > 20) sysElements.logContainer.removeChild(sysElements.logContainer.firstChild);
+       
+       sysElements.logContainer.scrollTop = sysElements.logContainer.scrollHeight;
+       lucide.createIcons();
+    }
+
+    function applyStyles(risk, data) {
+      if (risk === 'SAFE') {
+        elements.statusBadge.className = 'bg-safeGreen/20 border border-safeGreen/30 text-safeGreen font-medium px-4 py-1.5 rounded-full inline-flex items-center gap-2 text-sm transition-colors';
+        elements.statusBadgeText.innerText = 'System Safe';
+        setLucideIcon('statusIcon', 'shield-check');
+        
+        elements.sysDot.className = 'w-2 h-2 rounded-full bg-safeGreen';
+        elements.sysStatusText.innerText = 'Core Node 01: All systems operational';
+
+        elements.aiText1.innerText = `Battery operates within optimal thermal bounds. Current draw (${data.current.toFixed(1)}A) is stable. No preemptive cooling required.`;
+        elements.aiText1.className = 'text-sm text-primaryText leading-relaxed font-medium';
+        elements.aiConf.innerText = 'Confidence: High';
+        
+        elements.aiText2.innerText = `No anomalies detected.`;
+        elements.aiBorder2.className = 'pl-3 border-l-2 border-surfaceBorder';
+        elements.aiText2.className = 'text-sm font-medium text-mutedText leading-relaxed';
+        elements.aiPriority.innerText = 'Priority: Low';
+      } 
+      else if (risk === 'WARNING') {
+        elements.statusBadge.className = 'bg-accentYellow/20 border border-accentYellow/30 text-accentYellow font-medium px-4 py-1.5 rounded-full inline-flex items-center gap-2 text-sm transition-colors';
+        elements.statusBadgeText.innerText = 'Pre-Heating';
+        setLucideIcon('statusIcon', 'alert-triangle');
+
+        elements.sysDot.className = 'w-2 h-2 rounded-full bg-accentYellow shadow-[0_0_8px_#eab308]';
+        elements.sysStatusText.innerText = 'Core Node 01: Temperature rising, monitoring...';
+
+        elements.aiText1.innerText = `Slight thermal incline detected. Trajectory suggests ${data.predicted.toFixed(1)}°C shortly. Engaging low-tier cooling protocols to stabilize.`;
+        elements.aiText1.className = 'text-sm text-accentYellow leading-relaxed font-medium';
+        elements.aiConf.innerText = 'Confidence: Medium';
+        
+        elements.aiText2.innerText = `Recommendation: Increase cooling sequence. Current state is ${data.command}.`;
+        elements.aiBorder2.className = 'pl-3 border-l-2 border-accentYellow';
+        elements.aiText2.className = 'text-sm font-medium text-primaryText leading-relaxed';
+        elements.aiPriority.innerText = 'Priority: Medium';
+      } 
+      else if (risk === 'CRITICAL') {
+        elements.statusBadge.className = 'bg-dangerBg border border-criticalRed text-criticalRed font-bold px-4 py-1.5 rounded-full inline-flex items-center gap-2 text-sm transition-colors animate-pulse';
+        elements.statusBadgeText.innerText = 'Critical Risk';
+        setLucideIcon('statusIcon', 'flame');
+
+        elements.sysDot.className = 'w-2 h-2 rounded-full bg-criticalRed shadow-[0_0_8px_#ef4444] animate-pulse';
+        elements.sysStatusText.innerText = 'Core Node 01: THERMAL RUNAWAY RISK';
+
+        elements.aiText1.innerText = `CRITICAL ALERT: Rapid thermal runaway predicted (${data.predicted.toFixed(1)}°C). Maximum load on Peltier and Cooling fans engaged to prevent hardware damage. Current is ${data.current.toFixed(1)}A.`;
+        elements.aiText1.className = 'text-sm text-criticalRed leading-relaxed font-bold';
+        elements.aiConf.innerText = 'Confidence: High';
+        
+        elements.aiText2.innerText = `Immediate attention required. System automatically applying intervention (${data.command}).`;
+        elements.aiBorder2.className = 'pl-3 border-l-2 border-criticalRed';
+        elements.aiText2.className = 'text-sm font-bold text-criticalRed leading-relaxed';
+        elements.aiPriority.innerText = 'Priority: HIGH';
+      }
+    }
+
+    function updateDashboardChart(data) {
+      const now = new Date().toLocaleTimeString([], { hour12: false });
+      mainChart.data.labels.push(now); mainChart.data.datasets[0].data.push(data.t1); mainChart.data.datasets[1].data.push(data.voltage * 10); 
+      if (mainChart.data.labels.length > MAX_POINTS) { mainChart.data.labels.shift(); mainChart.data.datasets[0].data.shift(); mainChart.data.datasets[1].data.shift(); }
+      mainChart.update();
+    }
+
+    function setLucideIcon(elementId, iconName) {
+      const el = document.getElementById(elementId);
+      if (el && el.getAttribute('data-lucide') !== iconName) {
+        el.outerHTML = `<i data-lucide="${iconName}" class="w-4 h-4" id="${elementId}"></i>`;
+        lucide.createIcons({ nameAttr: 'data-lucide' });
+      }
+    }
+
+    // ================= SIMULATION LOGIC =================
+    let simInterval = null; let baseT1 = 34.2; let baseVolt = 40.1; 
+    const simBtn = document.getElementById('simBtn');
+    
+    simBtn.addEventListener('click', () => {
+      if (simInterval) { clearInterval(simInterval); simInterval = null; simBtn.innerText = 'Simulate Test Data'; simBtn.classList.remove('bg-[#27272a]', 'text-white'); } 
+      else {
+        simBtn.innerText = 'Stop Simulation'; simBtn.classList.add('bg-[#27272a]', 'text-white');
+        simInterval = setInterval(() => {
+          baseT1 += (Math.random() * 1.5) - 0.2; baseVolt -= (Math.random() * 0.1); if(baseT1 > 52) baseT1 -= 3;
+          const simData = { t1: baseT1, t2: baseT1 + 2.6, t3: baseT1 - 2.1, current: 12.5 + (Math.random()), voltage: baseVolt, battery: Math.max(0, 100 - (baseT1 - 34) * 2) };
+          const qs = new URLSearchParams(simData).toString(); fetch(`/data?${qs}`).catch(console.error);
+        }, 1500);
+      }
+    });
+
+    // ================= HISTORY MODAL & EXPORT LOGIC =================
+    const historyModal = document.getElementById('historyModal'); const historyTabBtn = document.getElementById('historyTabBtn'); const closeHistoryBtn = document.getElementById('closeHistoryBtn'); const historyTableBody = document.getElementById('historyTableBody');
+    historyTabBtn.addEventListener('click', () => { historyModal.classList.remove('hidden'); fetchHistory(); });
+    closeHistoryBtn.addEventListener('click', () => { historyModal.classList.add('hidden'); });
+
+    async function fetchHistory() {
+      try {
+        const res = await fetch('/api/history'); const data = await res.json();
+        if (data.length === 0) { historyTableBody.innerHTML = '<tr><td colspan="8" class="text-center py-8 text-mutedText">No data available yet.</td></tr>'; return; }
+        historyTableBody.innerHTML = data.reverse().map(row => {
+          const timeString = new Date(row.timestamp).toLocaleString();
+          return `<tr class="hover:bg-white/5 transition-colors"><td class="px-4 py-3 font-mono text-xs text-mutedText">${timeString}</td><td class="px-4 py-3 font-mono">${row.t1.toFixed(2)}</td><td class="px-4 py-3 font-mono">${row.t2.toFixed(2)}</td><td class="px-4 py-3 font-mono">${row.t3.toFixed(2)}</td><td class="px-4 py-3 font-mono font-bold text-primaryText">${row.avgTemp.toFixed(2)}</td><td class="px-4 py-3 font-mono">${row.current.toFixed(2)}</td><td class="px-4 py-3 font-mono">${row.voltage.toFixed(2)}</td><td class="px-4 py-3 font-mono">${Math.round(row.battery)}%</td></tr>`;
+        }).join('');
+      } catch (err) { historyTableBody.innerHTML = '<tr><td colspan="8" class="text-center py-8 text-criticalRed">Failed to load history data.</td></tr>'; }
+    }
+
+    document.getElementById('exportCsvBtn').addEventListener('click', async () => {
+      try {
+        const res = await fetch('/api/history'); const data = await res.json(); if(!data.length) return alert('No data available to export.');
+        let csvContent = "data:text/csv;charset=utf-8,Timestamp,T1(°C),T2(°C),T3(°C),AvgTemp(°C),Current(A),Voltage(V),Battery(%),Predicted(°C),Risk,CoolingAction\n";
+        data.forEach(r => {
+          const row = [ new Date(r.timestamp).toLocaleString().replace(/,/g, ''), r.t1.toFixed(2), r.t2.toFixed(2), r.t3.toFixed(2), r.avgTemp.toFixed(2), r.current.toFixed(2), r.voltage.toFixed(2), Math.round(r.battery), (r.predicted || 0).toFixed(2), r.risk || 'SAFE', r.command || 'OFF' ];
+          csvContent += row.join(",") + "\n";
+        });
+        const link = document.createElement("a"); link.setAttribute("href", encodeURI(csvContent)); link.setAttribute("download", `IntelliCell_Data_${Date.now()}.csv`); document.body.appendChild(link); link.click(); document.body.removeChild(link);
+      } catch (err) {}
+    });
+
+    document.getElementById('exportPdfBtn').addEventListener('click', async () => {
+      try {
+        const res = await fetch('/api/history'); const data = await res.json(); if(!data.length) return alert('No data available to export.');
+        const { jsPDF } = window.jspdf; const doc = new jsPDF();
+        const maxT = Math.max(...data.map(d => d.t1)); const minT = Math.min(...data.map(d => d.t1)); const avgV = data.reduce((sum, d) => sum + d.voltage, 0) / data.length;
+        const cEvt = data.filter(d => d.risk === 'CRITICAL').length; const cAct = data.filter(d => d.command && d.command !== 'OFF').length;
+
+        doc.setFontSize(18); doc.setTextColor(30, 41, 59); doc.text("IntelliCell Battery Monitoring Report", 14, 22);
+        doc.setFontSize(12); doc.setTextColor(71, 85, 105); doc.text("System Summary", 14, 32);
+        doc.setFontSize(10); doc.setTextColor(51, 65, 85);
+        doc.text(`o Max Temp (T1): ${maxT.toFixed(2)} °C`, 14, 40); doc.text(`o Min Temp (T1): ${minT.toFixed(2)} °C`, 14, 46); doc.text(`o Avg Voltage: ${avgV.toFixed(2)} V`, 14, 52); doc.text(`o Critical Events: ${cEvt}`, 14, 58); doc.text(`o Cooling Activations: ${cAct}`, 14, 64);
+        
+        const tableRows = []; [...data].reverse().forEach(r => { tableRows.push([ new Date(r.timestamp).toLocaleTimeString(), r.t1.toFixed(1), r.t2.toFixed(1), r.t3.toFixed(1), r.avgTemp.toFixed(1), r.current.toFixed(1), r.voltage.toFixed(1), Math.round(r.battery), (r.predicted || 0).toFixed(1), r.risk || 'SAFE', r.command || 'OFF' ]); });
+        doc.autoTable({ head: [["Date", "T1", "T2", "T3", "Avg Temp", "Cur(A)", "Volt(V)", "Bat(%)", "Pred(C)", "Risk", "Action"]], body: tableRows, startY: 72, styles: { fontSize: 8 }, headStyles: { fillColor: [59, 130, 246] }, theme: 'grid' });
+        doc.save(`IntelliCell_Report_${Date.now()}.pdf`);
+      } catch (err) {}
+    });
+  </script>
+</body>
+</html>

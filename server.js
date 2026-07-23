@@ -1,6 +1,9 @@
 // ================= VARIABLES =================
 let latestCommand = "OFF";
 let history = [];
+let fullHistory = [];
+
+
 
 // ================= IMPORTS =================
 const express = require("express");
@@ -18,30 +21,47 @@ app.get("/data", (req, res) => {
   const t3 = Number(req.query.t3);
   const current = Number(req.query.current);
   const voltage = Number(req.query.voltage);
-  const battery = Number(req.query.battery);
+  let battery = ((voltage - 9.0) / (12.6 - 9.0)) * 100;
+  battery = Math.max(0, Math.min(100, battery)); // Clamp between 0% and 100%
 
   const data = { t1, t2, t3, current, voltage, battery };
 
   console.log("📡 DATA:", data);
 
-  // ================= ML LOGIC =================
-  history.push(t1);
-  if (history.length > 5) history.shift();
+  // ================= FULL HISTORY LOGIC =================
+  const avgTemp = (t1 + t2 + t3) / 3;
+  const timestamp = new Date().toISOString();
+  const newRecord = { timestamp, t1, t2, t3, current, voltage, battery, avgTemp };
 
-  let predicted = t1;
+  fullHistory.push(newRecord);
+  if (fullHistory.length > 200) fullHistory.shift();
+
+  // ================= ML LOGIC =================
+  history.push(newRecord);
+  if (history.length > 20) history.shift();
+
+  let predicted = avgTemp;
 
   if (history.length >= 2) {
-    let slope = history[history.length - 1] - history[history.length - 2];
+    let slope = history[history.length - 1].t1 - history[history.length - 2].t1;
     predicted = t1 + slope * 3;
   }
 
   console.log("🔥 Predicted Temp:", predicted);
 
   // ================= DECISION =================
-  if (predicted > 50) latestCommand = "PELTIER";
-  else if (predicted > 45) latestCommand = "FAN_HIGH";
-  else if (predicted > 35) latestCommand = "FAN_LOW";
+  if (predicted > 36) latestCommand = "PELTIER";
+  else if (predicted > 33) latestCommand = "FAN_HIGH";
+  else if (predicted > 30) latestCommand = "FAN_LOW";
   else latestCommand = "OFF";
+
+  let risk = "SAFE";
+  if (predicted > 45) risk = "CRITICAL";
+  else if (predicted > 35) risk = "WARNING";
+
+  newRecord.predicted = predicted;
+  newRecord.risk = risk;  
+  newRecord.command = latestCommand;
 
   console.log("❄️ Command:", latestCommand);
 
@@ -59,6 +79,11 @@ app.get("/data", (req, res) => {
 // ================= SEND COMMAND TO ESP32 =================
 app.get("/command", (req, res) => {
   res.send(latestCommand);
+});
+
+// ================= API HISTORY =================
+app.get("/api/history", (req, res) => {
+  res.json(fullHistory);
 });
 
 // ================= SOCKET CONNECTION (OPTIONAL LOG) =================
